@@ -91,8 +91,19 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-
+  // Use the multiply function to multiply each pair
+  let productOfFirstTwo = multiply(multArr[0], multArr[1]); // Multiply first two numbers
+  let totalProduct = multiply(productOfFirstTwo, multArr[2]); // Multiply the result by the third number
+  
+  // Create the exact string format required
+  let resultString = "The numbers " + multArr.join(",") + " have a product of " + totalProduct + ".";
+  
+  // Return array with the product and the formatted string
+  return [totalProduct, resultString];
 }
+
+// Example call to see if it works
+console.log(multiplyArray([2, 3, 4]));
 
 // Here is the test for multiplyArray(); uncomment it to run it
 // testMultiplyArray(testArray);
