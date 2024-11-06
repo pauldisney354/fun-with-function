@@ -29,11 +29,18 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiply(a, b) { //eslint-disable-line
+  // Calculate the product
+  const product = a * b;
 
+  // Create the formatted string
+  const message = `The product of ${a} and ${b} is ${product}.`;
+
+  // Return the array with the product and the message
+  return [product, message];
 }
 
 // Here is the test for multiply(); uncomment it to run it
-// testMultiply(5,9);
+//testMultiply(5,9);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
@@ -50,11 +57,24 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
+  // Use the sum() function to add the numbers
+  let sumAB = sum(a, b)[0]; // Sum of a and b
+  let totalSum = sum(sumAB, c)[0]; // Add c to the result
 
+  // Use the multiply() function to multiply the numbers
+  let productAB = multiply(a, b)[0]; // Product of a and b
+  let totalProduct = multiply(productAB, c)[0]; // Multiply by c
+
+  // Construct the result strings as specified
+  let sumString = `${a} and ${b} and ${c} sum to ${totalSum}.`;
+  let productString = `The product of ${a} and ${b} and ${c} is ${totalProduct}.`;
+
+  // Return the array with sum, product, and both strings
+  return [totalSum, totalProduct, sumString, productString];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
-// testSumAndMultiply(4,7,5);
+//testSumAndMultiply(4,7,5);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
@@ -69,10 +89,24 @@ IMPORTANT DETAIL: You may not use the arithmetic operator + in this function. To
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testSumArray() function and see if the test passes.*/
 
 // Write your code here
-let testArray = [2, 3, 4]; //eslint-disable-line
+function sum(a, b) {
+  return a - (-b); // Trick to avoid using + for addition
+}
 
-function sumArray(sumArr) { //eslint-disable-line
+// Define the sumArray function
+function sumArray(sumArr) {
+  // Calculate the sum using the sum function
+  let total = sumArr[0];
+  for (let i = 1; i < sumArr.length; i++) {
+    total = sum(total, sumArr[i]);
+  }
 
+  // Create the string according to the required format
+  let numbersString = sumArr.join(',');
+  let message = `${numbersString} was passed in as an array of numbers, and ${total} is their sum.`;
+
+  // Return the result as an array
+  return [total, message];
 }
 
 // Here is the test for sumArray(); uncomment it to run it
@@ -93,11 +127,22 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
-
+  // Use the multiply function to multiply each pair
+  let productOfFirstTwo = multiply(multArr[0], multArr[1]); // Multiply first two numbers
+  let totalProduct = multiply(productOfFirstTwo, multArr[2]); // Multiply the result by the third number
+  
+  // Create the exact string format required
+  let resultString = "The numbers " + multArr.join(",") + " have a product of " + totalProduct + ".";
+  
+  // Return array with the product and the formatted string
+  return [totalProduct, resultString];
 }
 
+// Example call to see if it works
+console.log(multiplyArray([2, 3, 4]));
+
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyArray(testArray);
+ //testMultiplyArray(testArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. 
 
@@ -121,10 +166,23 @@ Test this function by hand in the console to get it working, and when you think 
 let testDynamicArray = [1,2,3,4,5]; //eslint-disable-line
 
 function multiplyAnyArray(dynamicArray) { //eslint-disable-line
+  // Step 1: Initialize the product accumulator
+  let product = 1;
 
+  // Step 2: Loop through dynamicArray and multiply each number
+  for (let i = 0; i < dynamicArray.length; i++) {
+    product = multiply(product, dynamicArray[i])[0];
+  }
+
+  // Step 3: Create the output string with the exact format required
+  const numbersString = dynamicArray.join(',');
+  const message = `The numbers ${numbersString} have a product of ${product}.`;
+
+  // Step 4: Return the array with the product and the message
+  return [product, message];
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyAnyArray(testDynamicArray);
+ testMultiplyAnyArray(testDynamicArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. You're done! Submit the link to the repo following the instructions in Canvas.
