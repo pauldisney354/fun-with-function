@@ -48,11 +48,24 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function sumAndMultiply(a, b, c) { //eslint-disable-line
+  // Use the sum() function to add the numbers
+  let sumAB = sum(a, b)[0]; // Sum of a and b
+  let totalSum = sum(sumAB, c)[0]; // Add c to the result
 
+  // Use the multiply() function to multiply the numbers
+  let productAB = multiply(a, b)[0]; // Product of a and b
+  let totalProduct = multiply(productAB, c)[0]; // Multiply by c
+
+  // Construct the result strings as specified
+  let sumString = `${a} and ${b} and ${c} sum to ${totalSum}.`;
+  let productString = `The product of ${a} and ${b} and ${c} is ${totalProduct}.`;
+
+  // Return the array with sum, product, and both strings
+  return [totalSum, totalProduct, sumString, productString];
 }
 
 // Here is the test for sumAndMultiply(); uncomment it to run it
-// testSumAndMultiply(4,7,5);
+//testSumAndMultiply(4,7,5);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
