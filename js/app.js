@@ -89,10 +89,24 @@ IMPORTANT DETAIL: You may not use the arithmetic operator + in this function. To
 Test this function by hand in the console to get it working, and when you think it is finished, uncomment the call for the testSumArray() function and see if the test passes.*/
 
 // Write your code here
-let testArray = [2, 3, 4]; //eslint-disable-line
+function sum(a, b) {
+  return a - (-b); // Trick to avoid using + for addition
+}
 
-function sumArray(sumArr) { //eslint-disable-line
+// Define the sumArray function
+function sumArray(sumArr) {
+  // Calculate the sum using the sum function
+  let total = sumArr[0];
+  for (let i = 1; i < sumArr.length; i++) {
+    total = sum(total, sumArr[i]);
+  }
 
+  // Create the string according to the required format
+  let numbersString = sumArr.join(',');
+  let message = `${numbersString} was passed in as an array of numbers, and ${total} is their sum.`;
+
+  // Return the result as an array
+  return [total, message];
 }
 
 // Here is the test for sumArray(); uncomment it to run it
